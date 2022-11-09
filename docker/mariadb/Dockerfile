@@ -4,7 +4,12 @@ RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf
 
 RUN apt update 
 
+RUN mkdir /scripts
+
 ADD ./startup.sh /scripts/startup.sh
+
+RUN cat /scripts/startup.sh
+
 RUN chmod -R 755 /scripts
 
 EXPOSE 3306
