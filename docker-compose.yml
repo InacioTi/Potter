@@ -8,7 +8,9 @@ services:
     restart: always
     expose:
       - 5000
-    command: bash -c "/potter/wait_for_mysql.sh && flask run --host 192.168.30.99 --port 5000"
+    volumes:
+      - ./potter:/potter
+    command: bash -c "/potter/wait_for_mysql.sh && python3 run.py"
     depends_on:
       - db
     environment:
