@@ -1,15 +1,8 @@
-FROM mariadb:latest
+FROM alpine:3.12.3
 
-RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf
-
-RUN apt update 
-
-RUN mkdir /scripts
+RUN apk add --no-cache mariadb mariadb-client mariadb-server-utils pwgen
 
 ADD ./startup.sh /scripts/startup.sh
-
-RUN cat /scripts/startup.sh
-
 RUN chmod -R 755 /scripts
 
 EXPOSE 3306

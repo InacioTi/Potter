@@ -8,7 +8,9 @@ services:
     restart: always
     expose:
       - 5000
-    command: bash -c "/potter/wait_for_mysql.sh && python3 run.py"
+    volumes:
+      - ./potter:/potter
+    command: bash -c "/potter/wait_for_mysql.sh && python3 run.py makemigration"
     depends_on:
       - db
     environment:
